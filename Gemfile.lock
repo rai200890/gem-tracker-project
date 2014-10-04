@@ -101,6 +101,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bundler
   byebug
   git
   mysql2

@@ -8,10 +8,10 @@ Rails.application.routes.draw do
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
-  get 'repositories', controller: :application, action :index
-  get 'gems', controller: :application, action :index
+  #get 'repositories', controller: :application, action :index
+  #get 'gems', controller: :application, action :index
  
-  namespace :api do
+  namespace :api, default: :json do
     resources :repositories
     resources :branches
     resources :gemfile_versions

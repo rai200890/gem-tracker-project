@@ -1,0 +1,15 @@
+{
+  "name": "gem_tracker_project",
+  "version": "1.0.0",
+  "description": "Gem Tracker",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rai200890/gem-tracker-project.git"
+  },
+  "author": "'Raissa Ferreira'",
+
+  "bugs": {
+    "url": "https://github.com/rai200890/gem-tracker-project/issues"
+  },
+  "homepage": "https://github.com/rai200890/gem-tracker-project"
+}

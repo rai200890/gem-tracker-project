@@ -1,0 +1,24 @@
+{
+  "name": "gem_tracker_project",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rai200890/gem-tracker-project",
+  "authors": [
+    "Raissa Ferreira <rai200890@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.2.0",
+    "angular": "latest",
+    "angular-resource": "latest",
+    "angular-route": "latest",
+    "smart-table": "latest"
+  }
+}
