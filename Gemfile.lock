@@ -32,7 +32,6 @@ GEM
       sprockets
       tilt
     arel (5.0.1.20140414130214)
-    awesome_print (1.2.0)
     builder (3.2.2)
     byebug (3.5.1)
       columnize (~> 0.8)
@@ -107,7 +106,6 @@ PLATFORMS
 
 DEPENDENCIES
   angular-rails-templates
-  awesome_print (= 1.2.0)
   bundler
   byebug
   git
