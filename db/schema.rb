@@ -14,20 +14,19 @@
 ActiveRecord::Schema.define(version: 20141002152806) do
 
   create_table "branches", force: true do |t|
-    t.string "repository_id"
-    t.string "integer"
-    t.string "name"
+    t.integer "repository_id"
+    t.string  "name"
   end
 
   create_table "gem_versions", force: true do |t|
-    t.string "name"
-    t.string "gem_id"
-    t.string "ineteger"
+    t.string  "name"
+    t.string  "integer"
+    t.integer "gem_id"
   end
 
   create_table "gemfile_versions", force: true do |t|
     t.integer "branch_id"
-    t.string  "commit_identifier"
+    t.string  "commit_id"
   end
 
   create_table "gems", force: true do |t|
@@ -37,7 +36,6 @@ ActiveRecord::Schema.define(version: 20141002152806) do
 
   create_table "repositories", force: true do |t|
     t.string "url"
-    t.string "string"
     t.string "name"
   end
 

@@ -1,4 +1,4 @@
-class GemTracker::Repository < ActiveRecord::Base
+class Repository < ActiveRecord::Base
 
 has_many :branches
 

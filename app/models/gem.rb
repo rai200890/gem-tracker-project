@@ -1,4 +1,4 @@
-class GemTracker::Gem < ActiveRecord::Base
+class Gem < ActiveRecord::Base
 
 has_many :gem_versions 
 

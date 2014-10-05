@@ -10,3 +10,4 @@ gem 'spring',        group: :development
 gem 'git'
 gem 'byebug', group: [:development, :test]
 gem 'angular-rails-templates'
+gem 'awesome_print', '1.2.0'

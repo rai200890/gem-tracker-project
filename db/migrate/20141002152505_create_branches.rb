@@ -1,8 +1,7 @@
 class CreateBranches < ActiveRecord::Migration
   def change
     create_table :branches do |t|
-      t.string :repository_id
-      t.string :integer
+      t.integer :repository_id
       t.string :name
     end
   end

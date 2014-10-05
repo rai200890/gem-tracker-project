@@ -1,4 +1,4 @@
-class GemTracker::GemfileVersion < ActiveRecord::Base
+class GemfileVersion < ActiveRecord::Base
 
 belongs_to :branch
 has_many :gem_versions 
