@@ -18,21 +18,30 @@ ActiveRecord::Schema.define(version: 20141002152806) do
     t.string  "name"
   end
 
+  add_index "branches", ["repository_id"], name: "index_branches_on_repository_id", using: :btree
+
   create_table "gem_versions", force: true do |t|
-    t.string  "name"
-    t.string  "integer"
+    t.string  "version"
     t.integer "gem_id"
   end
+
+  add_index "gem_versions", ["gem_id"], name: "index_gem_versions_on_gem_id", using: :btree
+  add_index "gem_versions", ["version"], name: "index_gem_versions_on_version", using: :btree
 
   create_table "gemfile_versions", force: true do |t|
     t.integer "branch_id"
     t.string  "commit_id"
   end
 
+  add_index "gemfile_versions", ["branch_id"], name: "index_gemfile_versions_on_branch_id", using: :btree
+  add_index "gemfile_versions", ["commit_id"], name: "index_gemfile_versions_on_commit_id", using: :btree
+
   create_table "gems", force: true do |t|
     t.string "name"
     t.string "source"
   end
+
+  add_index "gems", ["name"], name: "index_gems_on_name", using: :btree
 
   create_table "repositories", force: true do |t|
     t.string "url"

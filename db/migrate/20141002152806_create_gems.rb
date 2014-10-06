@@ -3,6 +3,7 @@ class CreateGems < ActiveRecord::Migration
     create_table :gems do |t|
       t.string :name
       t.string :source
+      t.index :name
     end
   end
 end
