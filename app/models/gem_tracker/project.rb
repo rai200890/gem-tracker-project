@@ -13,11 +13,8 @@ class GemTracker::Project
     self.name = params[:name]
     self.url = params[:url]
     self.path = "#{TMP_PATH}/#{self.name}"
-    self.git_repository =  if Dir.exists? path
-                             Git.open path
-                           else
-                             Git.clone self.url, path
-                           end
+    FileUtils.rmtree path if Dir.exists? path
+    self.git_repository = Git.clone self.url, path
   end
 
   def branches
@@ -30,9 +27,10 @@ class GemTracker::Project
       branch = GemTracker::Branch.where(repository_id: repository.id, name: git_repository.current_branch).first_or_create
       errors.add(:base, repository.errors.full_messages) unless repository.valid?
       errors.add(:base, branch.errors.full_messages) unless branch.valid?
-      commits = git_repository.log.object("Gemfile.lock")
+      commits = git_repository.log(10000000000).object("Gemfile.lock").map{|c| c}
+      byebug
       commits.each do |commit|
-        gemfile = GemTracker::GemfileVersion.where(commit_id: commit.objectish, branch_id: branch.id).first_or_create
+        gemfile = GemTracker::GemfileVersion.create commit_id: commit.objectish, branch_id: branch.id
         save_gems gemfile
       end
       fail ActiveRecord::Rollback if errors.any?
@@ -51,7 +49,6 @@ class GemTracker::Project
   end
 
   def retrieve_gems commit_id
-    git_repository.reset_hard
     git_repository.reset(commit_id)
     file = File.new "#{path}/Gemfile.lock"
     gemfile = Bundler::LockfileParser.new file.read
