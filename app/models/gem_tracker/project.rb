@@ -20,13 +20,18 @@ class GemTracker::Project
                            end
   end
 
+  def branches
+    self.git_repository.branches
+  end
+
   def save
     ActiveRecord::Base.transaction do
       repository = GemTracker::Repository.where(name: name, url: url).first_or_create
       branch = GemTracker::Branch.where(repository_id: repository.id, name: git_repository.current_branch).first_or_create
       errors.add(:base, repository.errors.full_messages) unless repository.valid?
       errors.add(:base, branch.errors.full_messages) unless branch.valid?
-      git_repository.log.object("Gemfile.lock").each do |commit|
+      commits = git_repository.log.object("Gemfile.lock")
+      commits.each do |commit|
         gemfile = GemTracker::GemfileVersion.where(commit_id: commit.objectish, branch_id: branch.id).first_or_create
         save_gems gemfile
       end
@@ -47,8 +52,7 @@ class GemTracker::Project
 
   def retrieve_gems commit_id
     git_repository.reset_hard
-    git_repository.pull
-    git_repository.revert(commit_id)
+    git_repository.reset(commit_id)
     file = File.new "#{path}/Gemfile.lock"
     gemfile = Bundler::LockfileParser.new file.read
     gemfile.specs
