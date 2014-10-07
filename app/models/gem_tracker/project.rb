@@ -19,8 +19,9 @@ class GemTracker::Project
       branch = GemTracker::Branch.where(repository_id: repository.id, name: git_repository.git.current_branch).first_or_create
       errors.add(:base, repository.errors.full_messages) unless repository.valid?
       errors.add(:base, branch.errors.full_messages) unless branch.valid?
-      git_repository.commit_ids.each do |commit|
-        GemTracker::Gemfile.create(commit_id: commit, branch_id: branch.id, gems: git_repository.gems(commit))
+      git_repository.commits.each do |commit|
+        #byebug
+        GemTracker::Gemfile.create(commit_id: commit.objectish, branch_id: branch.id, date: commit.date,gems: git_repository.gems(commit.objectish))
       end
       fail ActiveRecord::Rollback if errors.any?
     end

@@ -8,18 +8,17 @@ class  GemTracker::GitRepository
   def initialize params
     self.path = "#{TMP_PATH}/#{params[:name]}"
     self.url = params[:url]
-    FileUtils.rmtree(path) if Dir.exists?(path)
-    self.git = Git.clone(url, path)
+    #FileUtils.rmtree(path)
+    self.git = Dir.exists?(path) ? Git.open(path) : Git.clone(url, path)
   end
 
-  def commit_ids
-    git.log(LOG_LIMIT).object("Gemfile.lock").map{|c| c.objectish}
+  def commits
+    git.log(LOG_LIMIT).object("Gemfile.lock").map{|c| c}
   end
 
   def gems commit_id
-    git.fetch
-    git.reset
-    git.reset(commit_id)
+    #git.reset("HEAD")
+    git.checkout_file(commit_id, "Gemfile.lock")
     file = File.new "#{path}/Gemfile.lock"
     gemfile = Bundler::LockfileParser.new file.read
     gemfile.specs

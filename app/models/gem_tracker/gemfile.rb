@@ -4,11 +4,12 @@ class GemTracker::Gemfile
   include ActiveModel::Translation
   extend ActiveModel::Naming
 
-  attr_accessor :commit_id, :branch_id, :gems
+  attr_accessor :commit_id, :branch_id, :date, :gems
 
   def initialize(params)
     self.commit_id = params[:commit_id]
     self.branch_id = params[:branch_id]
+    self.date = params[:date]
     self.gems = params[:gems]
   end
 
@@ -20,8 +21,9 @@ class GemTracker::Gemfile
 
   def save
     ActiveRecord::Base.transaction do
+      gemfile_version = GemTracker::GemfileVersion.where(commit_id: commit_id, branch_id: branch_id).first_or_create
+      gemfile_version.update_attributes(date: date)
       gems.each do |g|
-        gemfile_version = GemTracker::GemfileVersion.where(commit_id: commit_id, branch_id: branch_id).first_or_create
         gem = GemTracker::Gem.where(name: g.name.to_s).first_or_create
         gem_version = GemTracker::GemVersion.where(gem_id: gem.id, version: g.version.to_s).first_or_create
         gemfile_version.gem_versions << gem_version unless gemfile_version.gem_versions.include? gem_version
