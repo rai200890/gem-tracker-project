@@ -8,7 +8,8 @@ class  GemTracker::GitRepository
   def initialize params
     self.path = "#{TMP_PATH}/#{params[:name]}"
     self.url = params[:url]
-    self.git = Dir.exists?(path) ? Git.open(path) : Git.clone(url, path)
+    FileUtils.rmtree(path) if Dir.exists?(path)
+    self.git = Git.clone(url, path)
   end
 
   def commit_ids

@@ -3,9 +3,8 @@ class GemTracker::Diff
   attr_accessor :created, :updated, :removed, :unchanged
 
   def initialize old, new
-    byebug
-    self.created = new.gem_versions - old.gem_versions
-    self.removed = old.gem_versions - new.gem_versions
+    self.created = new.gem_versions.pluck("id") - old.gem_versions.pluck("id")
+    self.removed = old.gem_versions.pluck("id") - new.gem_versions.pluck("id")
   end
 
 end
