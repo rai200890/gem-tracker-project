@@ -1,5 +1,5 @@
 class GemTracker::Project
-  include GemTracker
+
   include ActiveModel::Validations
   include ActiveModel::Conversion
   include ActiveModel::Translation

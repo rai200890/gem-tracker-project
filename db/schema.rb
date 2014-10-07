@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141002152806) do
+ActiveRecord::Schema.define(version: 20141007193134) do
 
   create_table "branches", force: true do |t|
     t.integer "repository_id"
@@ -27,6 +27,14 @@ ActiveRecord::Schema.define(version: 20141002152806) do
 
   add_index "gem_versions", ["gem_id"], name: "index_gem_versions_on_gem_id", using: :btree
   add_index "gem_versions", ["version"], name: "index_gem_versions_on_version", using: :btree
+
+  create_table "gem_versions_gemfile_versions", force: true do |t|
+    t.integer "gem_version_id"
+    t.integer "gemfile_version_id"
+  end
+
+  add_index "gem_versions_gemfile_versions", ["gem_version_id"], name: "index_gem_versions_gemfile_versions_on_gem_version_id", using: :btree
+  add_index "gem_versions_gemfile_versions", ["gemfile_version_id"], name: "index_gem_versions_gemfile_versions_on_gemfile_version_id", using: :btree
 
   create_table "gemfile_versions", force: true do |t|
     t.integer "branch_id"
