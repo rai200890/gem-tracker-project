@@ -11,4 +11,4 @@ gem 'git'
 gem 'byebug', group: [:development, :test]
 gem 'angular-rails-templates'
 gem 'awesome_print', '1.2.0'
-gem 'rspec-rails', group: [:development, :test]
+gem 'rspec-rails', '3.0.0', group: [:development, :test]
