@@ -14,4 +14,5 @@ gem 'awesome_print', '1.2.0'
 gem 'active_model_serializers'
 gem 'coffee-rails'
 gem 'has_scope'
-gem 'rspec-rails', '3.0.0', group: [:development, :test]
+gem 'angular_rails_csrf'
+gem 'rspec-rails', group: [:development, :test]
