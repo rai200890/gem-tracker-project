@@ -1,5 +1,5 @@
 function ProjectsController($scope, Project, Repository, $modal) {
-    $scope.project = new Project();
+    $scope.project = new Project({});
 
     Repository.index(function(data){
         $scope.repos = data;
@@ -7,21 +7,25 @@ function ProjectsController($scope, Project, Repository, $modal) {
     });
 
     $scope.create = function(){
-
+        Project.create({project: $scope.project},
+            function(){
+                $scope.$broadcast('success', 'Project created.');
+            },
+            function(response){
+                $scope.$broadcast('errors', response.data);
+            });
     }
-//    $scope.editAtribuicoes = function (cargo) {
-//        var modalInstance = $modal.open({
-//            templateUrl: 'cargos/atribuicoes.html',
-//            controller: CargoAtribuicoesController,
-//            size: "lg",
-//            resolve: {
-//                cargo: function(){
-//                    return cargo
-//                },
-//                planos_carreira: function(){
-//                    return $scope.planos_carreira
-//                }
-//            }
-//        });
-//    };
+
+    $scope.chooseBranch = function (repository) {
+        var modalInstance = $modal.open({
+            templateUrl: 'projects/choose_branch.html',
+            controller: BranchChooserController,
+            size: "lg",
+            resolve: {
+                repository: function(){
+                    return repository
+                }
+            }
+        });
+    };
 }

@@ -13,4 +13,5 @@ gem 'angular-rails-templates'
 gem 'awesome_print', '1.2.0'
 gem 'active_model_serializers'
 gem 'coffee-rails'
+gem 'has_scope'
 gem 'rspec-rails', '3.0.0', group: [:development, :test]

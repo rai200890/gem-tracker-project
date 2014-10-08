@@ -1,5 +1,5 @@
 function Project($resource) {
-    return $resource("/api/repositories/:id.json", { id: '@id' }, {
+    return $resource("/api/projects.json", { id: '@id' }, {
         create:  { method: 'POST' }
     });
 }

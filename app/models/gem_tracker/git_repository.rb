@@ -11,7 +11,7 @@ class  GemTracker::GitRepository
     #FileUtils.rmtree(path)
     self.git = Dir.exists?(path) ? Git.open(path) : Git.clone(url, path)
     self.git.reset("HEAD")
-    self.git.pull
+    self.git.fetch
   end
 
   def commits
