@@ -10,6 +10,8 @@ class  GemTracker::GitRepository
     self.url = params[:url]
     #FileUtils.rmtree(path)
     self.git = Dir.exists?(path) ? Git.open(path) : Git.clone(url, path)
+    self.git.reset("HEAD")
+    self.git.pull
   end
 
   def commits
@@ -17,7 +19,6 @@ class  GemTracker::GitRepository
   end
 
   def gems commit_id
-    #git.reset("HEAD")
     git.checkout_file(commit_id, "Gemfile.lock")
     file = File.new "#{path}/Gemfile.lock"
     gemfile = Bundler::LockfileParser.new file.read

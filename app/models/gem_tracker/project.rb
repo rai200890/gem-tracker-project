@@ -1,15 +1,10 @@
 class GemTracker::Project
-
-  include ActiveModel::Validations
-  include ActiveModel::Conversion
-  include ActiveModel::Translation
-  extend ActiveModel::Naming
+  include ActiveModel::Model
 
   attr_accessor :git_repository, :path, :name, :url
 
   def initialize(params = {})
-    self.name = params[:name]
-    self.url = params[:url]
+    super
     self.git_repository = GemTracker::GitRepository.new(url: url, name: name)
   end
 
@@ -20,7 +15,6 @@ class GemTracker::Project
       errors.add(:base, repository.errors.full_messages) unless repository.valid?
       errors.add(:base, branch.errors.full_messages) unless branch.valid?
       git_repository.commits.each do |commit|
-        #byebug
         GemTracker::Gemfile.create(commit_id: commit.objectish, branch_id: branch.id, date: commit.date,gems: git_repository.gems(commit.objectish))
       end
       fail ActiveRecord::Rollback if errors.any?
