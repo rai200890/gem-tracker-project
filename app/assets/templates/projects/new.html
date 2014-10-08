@@ -1,0 +1,8 @@
+<form class="form-inline" role="form">
+    <div class="form-group">
+        <label>New Project</label>
+        <input type="text" class="form-control" name="name" placeholder="Project Name" ng-model="project.name" required/>
+        <input type="text" class="form-control large" name="url" placeholder="Project URL" ng-model="project.url" required/>
+    </div>
+    <button class="btn btn-small btn-primary" ng-click="create()" ng-disabled="!project.name || !project.url"><span class="glyphicon glyphicon-plus"></span></button>
+</form>

@@ -17,7 +17,12 @@
 //= require angular-route
 //= require angular-resource
 //= require angular-bootstrap
-//= require smart-table
-//= require angular-named-routes
-// = require angular-rails-templates
-//= require gemTrackerApp
+//= require angular-smart-table
+//= require named-routes
+//= require angular-rails-templates
+//= require_tree ./controllers/
+//= require_tree ./resources/
+//= require_tree ./services/
+//= require_tree ../templates/
+//= require  gemTrackerApp
+//= require_tree .

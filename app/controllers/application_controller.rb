@@ -7,4 +7,9 @@ class ApplicationController < ActionController::Base
   def index
 
   end
+
+  def default_serializer_options
+    {root: false}
+  end
+
 end
