@@ -21,5 +21,19 @@ module GemTrackerProject
     # config.i18n.default_locale = :de
     config.assets.paths << Rails.root.join('bower_components')
     config.assets.paths << "#{Rails.root}/app/assets/templates"
+
+    # Eager load all value objects, as they may be instantiated from
+    # YAML before the symbol is referenced
+    config.before_initialize do |app|
+      app.config.paths.add 'app/models/gem_tracker', :eager_load => true
+    end
+
+# Reload cached/serialized classes before every request (in development
+# mode) or on startup (in production mode)
+    config.to_prepare do
+      Dir[ File.expand_path(Rails.root.join("app/models/gem_tracker/*.rb")) ].each do |file|
+        require_dependency file
+      end
+    end
   end
 end

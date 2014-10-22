@@ -21,6 +21,7 @@
     "angular-route": "latest",
     "angular-named-routes": "latest",
     "angular-bootstrap": "latest",
-    "smart-table": "latest"
-  }
+    "smart-table": "latest",
+    "angular-ui-router": "latest"
+ }
 }

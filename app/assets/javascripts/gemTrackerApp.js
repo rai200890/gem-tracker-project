@@ -1,10 +1,11 @@
 var gemTrackerApp = angular.module('gemTrackerApp',
-    ['ngResource','ngRoute','templates','ui.bootstrap','smart-table','zj.namedRoutes']);
+    ['ngResource','ngRoute','templates','ui.bootstrap','ui.router','smart-table','zj.namedRoutes']);
 
 gemTrackerApp.controller('ProjectsController',ProjectsController);
 gemTrackerApp.controller('MessagesController', MessagesController);
 gemTrackerApp.controller('ConfirmationModalController', ConfirmationModalController);
 
+gemTrackerApp.factory('GitRepository', GitRepository);
 gemTrackerApp.factory('Project', Project);
 gemTrackerApp.factory('Repository', Repository);
 gemTrackerApp.factory('Branch', Branch);

@@ -1,4 +1,5 @@
-function ProjectsController($scope, Project, Repository, $modal) {
+function ProjectsController($scope, GitRepository, Project, Repository, $modal) {
+    $scope.loading = false;
     $scope.project = new Project({});
 
     Repository.index(function(data){
@@ -7,12 +8,15 @@ function ProjectsController($scope, Project, Repository, $modal) {
     });
 
     $scope.create = function(){
+        $scope.loading = true;
         Project.create({project: $scope.project},
             function(){
                 $scope.$broadcast('success', 'Project created.');
+                $scope.loading = false;
             },
             function(response){
                 $scope.$broadcast('errors', response.data);
+                $scope.loading = false;
             });
     }
 

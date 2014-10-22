@@ -20,6 +20,7 @@
 //= require angular-smart-table
 //= require named-routes
 //= require angular-rails-templates
+//= require angular-ui-router
 //= require_tree ./controllers/
 //= require_tree ./resources/
 //= require_tree ./services/
