@@ -4,7 +4,9 @@ class ProjectsController < ApplicationController
 
   def create
     @project = GemTracker::Project.create safe_params
-    respond_with(@project)
+    respond_with(@project) do |format|
+      format.json {render json: @project}
+    end
   end
 
   private

@@ -10,8 +10,9 @@ function ProjectsController($scope, GitRepository, Project, Repository, $modal) 
     $scope.create = function(){
         $scope.loading = true;
         Project.create({project: $scope.project},
-            function(){
+            function(response){
                 $scope.$broadcast('success', 'Project created.');
+                $scope.repositories.push(response.data);
                 $scope.loading = false;
             },
             function(response){
