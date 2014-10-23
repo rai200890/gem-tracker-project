@@ -7,8 +7,8 @@ class GemTracker::Project
     @url = params[:url]
     @name = params[:name]
     @git_repository = GemTracker::GitRepository.new(url: @url, name: @name)
-    self.repository =  GemTracker::Repository.new(name: @name, name: @url)
-    self.master_branch = GemTracker::Branch.create(repository_id: repository.id, name: @git_repository.current_branch)
+    self.repository =  GemTracker::Repository.new(url: @url, name: @name)
+    self.master_branch = GemTracker::Branch.new(name: @git_repository.current_branch)
   end
 
   def self.find id
@@ -16,9 +16,16 @@ class GemTracker::Project
     GemTracker::Project.new repository: repository, name: repository.name, url: repository.url
   end
 
+  def self.create params = {}
+    project = GemTracker::Project.new params
+    project.save
+    project
+  end
+
   def self.save params = {}
     ActiveRecord::Base.transaction do
       repository.save
+      master_branch.repository = repository
       master_branch.save
       errors.add(:base, repository.errors.full_messages) unless repository.valid?
       errors.add(:base, master_branch.errors.full_messages) unless master_branch.valid?
