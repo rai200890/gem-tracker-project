@@ -13,7 +13,8 @@ class GemTracker::Project
 
   def self.find id
     repository = GemTracker::Repository.find id
-    GemTracker::Project.new repository: repository, name: repository.name, url: repository.url
+    master_branch = GemTracker::Branch.where(repository_id: repository.id, name: 'master').first
+    GemTracker::Project.new repository: repository, name: repository.name, url: repository.url, master_branch: master_branch
   end
 
   def self.create params = {}
