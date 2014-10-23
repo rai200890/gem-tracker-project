@@ -9,6 +9,14 @@ class ProjectsController < ApplicationController
     end
   end
 
+  def show
+    @project = GemTracker::Project.find params[:id]
+    respond_with(@project) do |format|
+      format.json {render json: @project}
+    end
+  end
+
+
   private
 
   def safe_params

@@ -1,30 +1,27 @@
 class GemTracker::Project
   include ActiveModel::Model
 
-  attr_accessor :url, :name, :repository, :branches
+  attr_accessor :url, :name, :repository, :master_branch
 
   def initialize params = {}
     @url = params[:url]
     @name = params[:name]
     @git_repository = GemTracker::GitRepository.new(url: @url, name: @name)
+    self.repository =  GemTracker::Repository.new(name: @name, name: @url)
+    self.master_branch = GemTracker::Branch.create(repository_id: repository.id, name: @git_repository.current_branch)
   end
 
   def self.find id
-    repository = GemTracker::Repository.find(id)
-    GemTracker::Project.new url: repository.url, name: repository.name
+    repository = GemTracker::Repository.find id
+    GemTracker::Project.new repository: repository, name: repository.name, url: repository.url
   end
 
-  def self.create params = {}
-    project = GemTracker::Project.new params
-    project.save
-    project
-  end
-
-  def save
+  def self.save params = {}
     ActiveRecord::Base.transaction do
-      repository = GemTracker::Repository.create(name: @name, name: @url)
-      branch = GemTracker::Branch.where(repository_id: repository.id, name: @git_repository.current_branch).first_or_create
+      repository.save
+      master_branch.save
       errors.add(:base, repository.errors.full_messages) unless repository.valid?
+      errors.add(:base, master_branch.errors.full_messages) unless master_branch.valid?
       @git_repository.commits.each do |commit|
         GemTracker::Gemfile.create(commit_id: commit.objectish, branch_id: branch.id, date: commit.date,gems: @git_repository.gems(commit.objectish))
       end

@@ -52,6 +52,8 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.2.2)
+    font-awesome-less (4.0.2)
+      less-rails (>= 2.4.2)
     git (1.2.8)
     has_scope (0.5.1)
     hike (1.2.3)
@@ -155,6 +157,7 @@ DEPENDENCIES
   bundler
   byebug
   coffee-rails
+  font-awesome-less
   git
   has_scope
   less-rails

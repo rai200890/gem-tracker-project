@@ -5,11 +5,11 @@ Rails.application.routes.draw do
   root 'application#index'
 
   get '/projects', controller: :application, action: :index
+  get '/projects/:id', controller: :application, action: :index
   get '/diff/new', controller: :application, action: :index
 
-
   scope :api, defaults: { format: :json }, constraints: { format: 'json' } do
-    resources :projects, only: [:create]
+    resources :projects, only: [:create, :show]
     resource :diff, only: [:new]
     resources :git_repositories, only: [:create]
     resources :repositories, only: [:index]

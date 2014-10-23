@@ -1,3 +1,5 @@
 function ProjectController($scope, $stateParams, Project){
-    $scope.project = Project.show();
+    Project.show({id: $stateParams.projectId}, function(response){
+        $scope.project =  response;
+    });
 }

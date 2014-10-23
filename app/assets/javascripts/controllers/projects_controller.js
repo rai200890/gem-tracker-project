@@ -1,4 +1,4 @@
-function ProjectsController($scope, GitRepository, Project, Repository, $modal) {
+function ProjectsController($scope, $stateParams, Project, Repository) {
     $scope.loading = false;
     $scope.project = new Project({});
 
@@ -20,17 +20,4 @@ function ProjectsController($scope, GitRepository, Project, Repository, $modal) 
                 $scope.loading = false;
             });
     }
-
-    $scope.chooseBranch = function (repository) {
-        var modalInstance = $modal.open({
-            templateUrl: 'projects/choose_branch.html',
-            controller: BranchChooserController,
-            size: "lg",
-            resolve: {
-                repository: function(){
-                    return repository
-                }
-            }
-        });
-    };
 }
