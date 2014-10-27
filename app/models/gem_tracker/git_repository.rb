@@ -27,7 +27,7 @@ class  GemTracker::GitRepository
   end
 
   def branches
-    @git.branches.map(&:name)
+    @git.branches.local.to_a.map{|b| b.try :name}
   end
 
   def checkout branch

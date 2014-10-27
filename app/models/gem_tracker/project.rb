@@ -7,6 +7,7 @@ class GemTracker::Project
     @url = params[:url]
     @name = params[:name]
     @git_repository = GemTracker::GitRepository.new(url: @url, name: @name)
+    self.git_repository = @git_repository
     self.repository =  params[:repository] || GemTracker::Repository.new(url: @url, name: @name)
     self.master_branch = params[:master_branch] || GemTracker::Branch.new(name: @git_repository.current_branch) unless @git_repository.errors.any?
   end
