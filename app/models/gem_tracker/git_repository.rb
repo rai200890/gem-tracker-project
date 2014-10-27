@@ -6,12 +6,16 @@ class  GemTracker::GitRepository
   TMP_PATH = Rails.root.join("tmp","git")
   LOG_LIMIT = 1000000000
 
-  def initialize params
-    @path = "#{TMP_PATH}/#{params[:name]}"
-    self.url = params[:url]
-    @git = Dir.exists?(@path) ? Git.open(@path) : Git.clone(self.url, @path)
-    @git.reset_hard
-    @git.pull
+  def initialize params = {}
+    begin
+      @path = "#{TMP_PATH}/#{params[:name]}"
+      self.url = params[:url]
+      @git = Dir.exists?(@path) ? Git.open(@path) : Git.clone(self.url, @path)
+      @git.reset_hard
+      @git.pull
+    rescue Exception => e
+      self.errors.add(:base, 'Error in repository. Check if the url is correct.')
+    end
   end
 
   def current_branch

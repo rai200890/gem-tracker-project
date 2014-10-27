@@ -17,11 +17,6 @@
             <tr ng-repeat="repository in repositories">
                 <td>{{repository.name}}</td>
                 <td><a ng-href="{{repository.url}}" target="_blank">{{repository.url}}</a></td>
-                <td>
-                    <div class="btn-group">
-                        <button ng-click="chooseBranch(repository)" class="btn btn-small" name="" tooltip=""><span class="glyphicon glyphicon-list"></span></button>
-                    </div>
-                </td>
             </tr>
             </tbody>
             <tfoot>
