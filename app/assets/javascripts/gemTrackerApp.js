@@ -24,7 +24,14 @@ gemTrackerApp.config(function($stateProvider, $urlRouterProvider, $locationProvi
         url: "/projects/:id",
         templateUrl: "projects/show.html",
         controller: ProjectController
+    }).state("projects_details.branches", {
+        url: "/branches",
+        templateUrl: "branches/show.html"
+    }).state("projects_details.diff", {
+        url: "/diff",
+        templateUrl: "diff/show.html"
     });
+
 
     //$urlRouterProvider.otherwise("/");
 });

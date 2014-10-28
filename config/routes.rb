@@ -1,12 +1,11 @@
 Rails.application.routes.draw do
 
-  resources :git_repositories
-
   root 'application#index'
 
   get '/projects', controller: :application, action: :index
   get '/projects/:id', controller: :application, action: :index
-  get '/diff/new', controller: :application, action: :index
+  get '/projects/:id/branches', controller: :application, action: :index
+  get '/projects/:id/diff', controller: :application, action: :index
 
   scope :api, defaults: { format: :json }, constraints: { format: 'json' } do
     resources :projects, only: [:create, :show]

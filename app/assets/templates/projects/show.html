@@ -1,27 +1,20 @@
-<div ng-show="loading" class="row text-center">
-    <h1><i class="info-icons fa fa-5x fa-circle-o-notch fa-spin"></i></h1>
-</div>
-<div class="row" ng-hide="loading">
-    <h3>Project Information</h3>
-    <dl class="dl-horizontal">
-        <dt>Name</dt>
-        <dd>{{project.name}}</dd>
-        <dt>URL</dt>
-        <dd><a ng-href="{{project.url}}" target="_blank">{{project.url}}</a></dd>
-    </dl>
-</div>
-<div class="row" ng-hide="loading">
-    <div class="form-inline">
-        <div class="btn-group-vertical">
-            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                <span>Branches</span> <span class="caret"></span>
-            </button>
-            <ul ng-repeat="branch in project.branches" class="dropdown-menu" role="menu" aria-labelledby="btnGroupVerticalDrop1">
-                <li><a href="#">{{branch}}</a></li>
-            </ul>
+<div>
+    <p></p>
+    <div class="panel panel-info">
+        <div class="panel-heading">Project Information</div>
+        <div class="panel-body">
+            <dl class="dl-horizontal">
+                <dt>Name</dt>
+                <dd>{{project.name}}</dd>
+                <dt>URL</dt>
+                <dd><a ng-href="{{project.url}}" target="_blank">{{project.url}}</a></dd>
+            </dl>
         </div>
     </div>
 </div>
-<div class="row" ng-hide="loading">
-    <h3>Gemfile Versions</h3>
+<ul class="nav nav-pills">
+    <li><a ui-sref=".branches">Branches</a></li>
+    <li><a ui-sref=".diff">Diff</a></li>
+</ul>
+<div ui-view></div>
 </div>
