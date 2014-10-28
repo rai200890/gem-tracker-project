@@ -1,5 +1,9 @@
 function ProjectController($scope, $stateParams, Project){
-    Project.show({id: $stateParams.projectId}, function(response){
+    $scope.loading = true;
+    $scope.sekectedBranch = null;
+
+    Project.show({id: $stateParams.id}, function(response){
         $scope.project =  response;
+        $scope.loading = false;
     });
 }

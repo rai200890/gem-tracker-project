@@ -17,6 +17,7 @@
             <tr ng-repeat="repository in repositories">
                 <td>{{repository.name}}</td>
                 <td><a ng-href="{{repository.url}}" target="_blank">{{repository.url}}</a></td>
+                <td><a ui-sref="projects_details({id: repository.id})"><i class="fa fa-search-plus"></i></a></td>
             </tr>
             </tbody>
             <tfoot>

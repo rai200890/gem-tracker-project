@@ -1,5 +1,5 @@
 var gemTrackerApp = angular.module('gemTrackerApp',
-    ['ngResource','ngRoute','templates','ui.bootstrap','ui.router','smart-table','zj.namedRoutes']);
+    ['ngResource','ngRoute','templates','ui.bootstrap','ui.router','smart-table']);
 
 gemTrackerApp.controller('ProjectController',ProjectController);
 gemTrackerApp.controller('ProjectsController',ProjectsController);
@@ -21,7 +21,7 @@ gemTrackerApp.config(function($stateProvider, $urlRouterProvider, $locationProvi
         templateUrl: "projects/index.html",
         controller: "ProjectsController"
     }).state("projects_details", {
-        url: "/projects/:projectId",
+        url: "/projects/:id",
         templateUrl: "projects/show.html",
         controller: ProjectController
     });
