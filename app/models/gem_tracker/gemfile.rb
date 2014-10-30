@@ -22,7 +22,6 @@ class GemTracker::Gemfile
   def save
     ActiveRecord::Base.transaction do
       gemfile_version = GemTracker::GemfileVersion.where(commit_id: commit_id, branch_id: branch_id).first_or_create
-      gemfile_version.update_attributes(date: date)
       gems.each do |g|
         gem = GemTracker::Gem.where(name: g.name.to_s).first_or_create
         gem_version = GemTracker::GemVersion.where(gem_id: gem.id, version: g.version.to_s).first_or_create

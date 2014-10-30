@@ -3,7 +3,6 @@ module ProjectRepresenter
 
   property :url
   property :name
-  property :master_branch
   property :repository
   property :branches
 

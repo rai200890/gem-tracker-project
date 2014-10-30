@@ -14,6 +14,7 @@ class  GemTracker::GitRepository
       @git.reset_hard
       @git.pull
     rescue Exception => e
+      byebug
       self.errors.add(:base, 'Error in repository. Check if the url is correct.')
     end
   end
@@ -36,7 +37,8 @@ class  GemTracker::GitRepository
     @git.checkout branch
   end
 
-  def gems commit_id
+  def gems branch = 'master', commit_id
+    checkout branch
     @git.checkout_file(commit_id, "Gemfile.lock")
     file = File.new "#{@path}/Gemfile.lock"
     gemfile = Bundler::LockfileParser.new file.read
