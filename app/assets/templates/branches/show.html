@@ -10,17 +10,22 @@
             </div>
         </div>
     </div>
-    <table class="table table-striped table-responsive">
-        <caption>Gemfile Versions</caption>
-        <thead>
-        <th>Commit Id</th>
-        <th>Date</th>
-        </thead>
-        <tbody ng-repeat="gemfileVersion in gemfileVersions">
-        <tr>
-            <td>{{gemfileVersion.commit_id}}</td>
-            <td>{{gemfileVersion.date}}</td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="panel panel-info">
+        <div class="panel-heading">Gemfile Versions</div>
+        <div class="panel-body">
+            <h4 ng-hide="selectedBranch && gemfileVersions" class="text-center">Choose a branch for visualization</h4>
+            <table ng-show='selectedBranch' class="table table-striped table-responsive">
+                <thead>
+                <th>Commit Id</th>
+                <th>Date</th>
+                </thead>
+                <tbody ng-repeat="gemfileVersion in gemfileVersions">
+                <tr>
+                    <td>{{gemfileVersion.commit_id}}</td>
+                    <td>{{gemfileVersion.date | date:'medium' }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 </div>
