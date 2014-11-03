@@ -1,35 +1,41 @@
 <div class="row" ng-controller="ProjectsController">
     <div ng-include=" 'messages/alert.html' "></div>
-    <legend>Projects</legend>
-    <div ng-include=" 'projects/new.html' "></div>
-    <div>
-        <table st-table="repositories"  st-safe-src="repos" class="table table-striped">
-            <thead>
-            <tr>
-                <th st-sort="name">Name</th>
-                <th st-sort="url">URL</th>
-            </tr>
-            <tr>
-                <th colspan="4"><input st-search="" class="form-control" placeholder="filter project by name or url" type="text"/></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="repository in repositories">
-                <td>{{repository.name}}</td>
-                <td><a ng-href="{{repository.url}}" target="_blank">{{repository.url}}</a></td>
-                <td><a ui-sref="projects_details({id: repository.id})"><i class="fa fa-search-plus"></i></a></td>
-            </tr>
-            </tbody>
-            <tfoot>
-            <tr>
-                <td colspan="4" class="text-center">
-                    <div st-pagination="" st-items-by-page="5" st-displayed-pages="5"></div>
-                </td>
-            </tr>
-            </tfoot>
-        </table>
+    <div class="container-fluid">
+        <div ng-include=" 'projects/new.html' "></div>
     </div>
-    <div class="alert alert-info center" role="alert" ng-if="projects.length == 0">
-        <strong>No projects yet</strong>
+    <div class="container-fluid">
+        <div class="panel panel-info">
+            <div class="panel-heading">Projects</div>
+            <div class="panel-body">
+                <table st-table="repositories"  st-safe-src="repos" class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th st-sort="name">Name</th>
+                        <th st-sort="url">URL</th>
+                    </tr>
+                    <tr>
+                        <th colspan="4"><input st-search="" class="form-control" placeholder="filter project by name or url" type="text"/></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="repository in repositories">
+                        <td>{{repository.name}}</td>
+                        <td><a ng-href="{{repository.url}}" target="_blank">{{repository.url}}</a></td>
+                        <td><a ui-sref="projects_details({id: repository.id})"><i class="fa fa-search-plus"></i></a></td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td colspan="4" class="text-center">
+                            <div st-pagination="" st-items-by-page="5" st-displayed-pages="5"></div>
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="alert alert-info center" role="alert" ng-if="projects.length == 0">
+                <strong>No projects yet</strong>
+            </div>
+        </div>
     </div>
 </div>

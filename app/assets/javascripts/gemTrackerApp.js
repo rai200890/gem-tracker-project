@@ -35,7 +35,7 @@ gemTrackerApp.config(function($stateProvider, $urlRouterProvider, $locationProvi
         controller: BranchController
     }).state("projects_details.diff", {
         url: "/diff",
-        templateUrl: "diff/show.html",
+        templateUrl: "diff/index.html",
         controller: DiffController
     });
 
