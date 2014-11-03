@@ -11,7 +11,6 @@ function ProjectsController($scope, $stateParams, Project, Repository) {
         $scope.loading = true;
         Project.create({project: $scope.project},
             function(response){
-                console.log(response);
                 $scope.$broadcast('success', 'Project created.');
                 $scope.repositories.push(response.repository);
                 $scope.loading = false;

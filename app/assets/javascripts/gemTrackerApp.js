@@ -20,14 +20,15 @@ gemTrackerApp.config(function($stateProvider, $urlRouterProvider, $locationProvi
     $stateProvider.state("projects", {
         url: "/projects",
         templateUrl: "projects/index.html",
-        controller: "ProjectsController"
+        controller: ProjectsController
     }).state("projects_details", {
         url: "/projects/:id",
         templateUrl: "projects/show.html",
         controller: ProjectController
     }).state("projects_details.info", {
         url: "/",
-        templateUrl: "projects/info.html"
+        templateUrl: "projects/info.html",
+        controller: ProjectInfoController
     }).state("projects_details.branches", {
         url: "/branches",
         templateUrl: "branches/show.html",
@@ -39,5 +40,5 @@ gemTrackerApp.config(function($stateProvider, $urlRouterProvider, $locationProvi
     });
 
 
-    //$urlRouterProvider.otherwise("/");
+    $urlRouterProvider.otherwise("/");
 });

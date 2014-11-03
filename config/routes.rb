@@ -9,8 +9,8 @@ Rails.application.routes.draw do
 
   scope :api, defaults: { format: :json }, constraints: { format: 'json' } do
     resources :projects, only: [:create, :show]
-    resource :diff, only: [:new]
-    resources :repositories, only: [:index]
+    resource :diff, only: [:create]
+    resources :repositories, only: [:index, :show]
     resources :branches, only: [:index]
     resources :gemfile_versions, only:[:index]
     resources :gem_versions, only: [:index]
