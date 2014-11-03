@@ -1,20 +1,8 @@
-<div>
-    <p></p>
-    <div class="panel panel-info">
-        <div class="panel-heading">Project Information</div>
-        <div class="panel-body">
-            <dl class="dl-horizontal">
-                <dt>Name</dt>
-                <dd>{{project.name}}</dd>
-                <dt>URL</dt>
-                <dd><a ng-href="{{project.url}}" target="_blank">{{project.url}}</a></dd>
-            </dl>
-        </div>
-    </div>
-</div>
 <ul class="nav nav-pills">
-    <li><a ui-sref=".branches">Branches</a></li>
-    <li><a ui-sref=".diff">Diff</a></li>
+    <li ng-repeat="state in states"><a ui-sref="{{state.name}}">{{state.description}}</a></li>
 </ul>
-<div ui-view></div>
+<div>
+    <ui-view>
+        <div ng-include=" 'projects/info.html' "></div>
+    </ui-view>
 </div>

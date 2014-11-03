@@ -27,6 +27,7 @@ class GemTracker::Project
       repository.save
       errors.add(:base, repository.errors.full_messages) unless repository.valid?
       branches.each do |branch|
+        branch.repository = repository
         branch.save
         errors.add(:base, branch.errors.full_messages) unless branch.valid?
         @git_repository.commits.each do |commit|

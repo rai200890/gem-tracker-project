@@ -1,8 +1,5 @@
 class GemTracker::Gemfile
-  include ActiveModel::Validations
-  include ActiveModel::Conversion
-  include ActiveModel::Translation
-  extend ActiveModel::Naming
+  include ActiveModel::Model
 
   attr_accessor :commit_id, :branch_id, :date, :gems
 
@@ -21,7 +18,7 @@ class GemTracker::Gemfile
 
   def save
     ActiveRecord::Base.transaction do
-      gemfile_version = GemTracker::GemfileVersion.where(commit_id: commit_id, branch_id: branch_id).first_or_create
+      gemfile_version = GemTracker::GemfileVersion.where(commit_id: commit_id, branch_id: branch_id, date: self.date).first_or_create
       gems.each do |g|
         gem = GemTracker::Gem.where(name: g.name.to_s).first_or_create
         gem_version = GemTracker::GemVersion.where(gem_id: gem.id, version: g.version.to_s).first_or_create
@@ -29,7 +26,7 @@ class GemTracker::Gemfile
         errors.add(:base, gemfile.errors.full_messages) unless gemfile_version.valid?
         errors.add(:base, gem.errors.full_messages) unless gem.valid?
       end
-      fail ActiveRecord::Rollback if errors.any?
+      fail ActiveRecord::Rollback if self.errors.any?
     end
     errors.empty?
   end

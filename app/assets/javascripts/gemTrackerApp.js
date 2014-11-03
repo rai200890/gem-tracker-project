@@ -8,6 +8,7 @@ gemTrackerApp.controller('ConfirmationModalController', ConfirmationModalControl
 
 gemTrackerApp.factory('Project', Project);
 gemTrackerApp.factory('Repository', Repository);
+gemTrackerApp.factory('GemfileVersion', GemfileVersion);
 gemTrackerApp.factory('Branch', Branch);
 gemTrackerApp.factory('Diff', Diff);
 
@@ -24,12 +25,17 @@ gemTrackerApp.config(function($stateProvider, $urlRouterProvider, $locationProvi
         url: "/projects/:id",
         templateUrl: "projects/show.html",
         controller: ProjectController
+    }).state("projects_details.info", {
+        url: "/",
+        templateUrl: "projects/info.html"
     }).state("projects_details.branches", {
         url: "/branches",
-        templateUrl: "branches/show.html"
+        templateUrl: "branches/show.html",
+        controller: BranchController
     }).state("projects_details.diff", {
         url: "/diff",
-        templateUrl: "diff/show.html"
+        templateUrl: "diff/show.html",
+        controller: DiffController
     });
 
 

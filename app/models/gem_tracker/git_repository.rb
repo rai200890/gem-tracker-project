@@ -14,7 +14,6 @@ class  GemTracker::GitRepository
       @git.reset_hard
       @git.pull
     rescue Exception => e
-      byebug
       self.errors.add(:base, 'Error in repository. Check if the url is correct.')
     end
   end
@@ -24,7 +23,7 @@ class  GemTracker::GitRepository
   end
 
   def commits
-    @git.log(LOG_LIMIT).object("Gemfile.lock").map{|c| c}
+    @git.log(LOG_LIMIT).object("Gemfile.lock").map{|c| c}.reverse
   end
 
   def branches
