@@ -1,5 +1,5 @@
 function Diff($resource) {
-    return $resource("/api/diff.json",{}, {
-        new:  { method: 'GET' }
+    return $resource("/api/diff/new.json",{}, {
+        new:  { method: 'GET', isArray: false }
     });
 }
