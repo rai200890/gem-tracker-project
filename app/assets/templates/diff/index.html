@@ -1,3 +1,63 @@
-<div ng-include=" 'diff/new.html' "></div>
-<div ng-include=" 'diff/show.html' "></div>
-
+<div class="panel panel-info">
+    <div class="panel-heading">New Diff</div>
+    <div class="panel-body">
+        <form class="form-inline">
+            <select class="form-control" ng-model="oldBranch"
+                    ng-options="branch.id as branch.name for branch in branches">
+            </select>
+            <select class="form-control" ng-model="oldGemfileVersion"
+                    ng-options="gemfileVersion.id as gemfileVersion.date for gemfileVersion in oldGemfileVersions">
+            </select>
+            <select class="form-control" ng-model="newBranch"
+                    ng-options="branch.id as branch.name for branch in branches">
+            </select>
+            <select class="form-control" ng-model="newGemfileVersion"
+                    ng-options="gemfileVersion.id as gemfileVersion.date for gemfileVersion in newGemfileVersions">
+            </select>
+            <button ng-click="view()" class="btn btn-primary"><i class="fa fa-search-plus"></i><span>View</span>
+            </button>
+        </form>
+    </div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading">Diff</div>
+    <div class="panel-body">
+        <div ng-if="diff" class="container">
+            <div class="row">
+                <strong>Included</strong>
+                <dl ng-if="diff.included.length" class="dl-horizontal" ng-repeat="item in diff.included">
+                    <dt>{{item.gem_name}}</dt>
+                    <dd>{{item.version}}</dd>
+                </dl>
+                <p ng-if="!diff.included.length">None</p>
+            </div>
+            <div class="row">
+                <strong>Removed</strong>
+                <dl ng-if="diff.removed.length" class="dl-horizontal" ng-repeat="item in diff.removed">
+                    <dt>{{item.gem_name}}</dt>
+                    <dd>{{item.version}}</dd>
+                </dl>
+                <p ng-if="!diff.removed.length">None</p>
+            </div>
+            <div class="row">
+                <strong>Updated</strong>
+                <dl ng-if="diff.updated.length" class="dl-horizontal" ng-repeat="item in diff.updated">
+                    <dt>{{item.gem_name}}</dt>
+                    <dd>{{item.version}}</dd>
+                </dl>
+                <p ng-if="!diff.updated.length">None</p>
+            </div>
+            <div class="row">
+                <strong>Unchanged</strong>
+                <dl ng-if="diff.unchanged.length" class="dl-horizontal" ng-repeat="item in diff.unchanged">
+                    <dt>{{item.gem_name}}</dt>
+                    <dd>{{item.version}}</dd>
+                </dl>
+                <p ng-if="!diff.unchanged.length">None</p>
+            </div>
+        </div>
+    </div>
+    <div ng-if="!diff" class="text-center container">
+        <h4>Choose 2 gemfile versions for comparison</h4>
+    </div>
+</div>

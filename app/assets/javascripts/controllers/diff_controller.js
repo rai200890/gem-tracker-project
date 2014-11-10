@@ -1,6 +1,8 @@
-function DiffController($scope, $stateParams, Branch, GemfileVersion, Diff){
+function DiffController($scope, $stateParams, Branch, GemfileVersion, Diff) {
     var repository_id = $stateParams.id;
+    $scope.diff = null;
     $scope.branches = [];
+
     $scope.oldBranch = null;
     $scope.newBranch = null;
 
@@ -10,29 +12,28 @@ function DiffController($scope, $stateParams, Branch, GemfileVersion, Diff){
     $scope.oldGemfileVersions = [];
     $scope.newGemfileVersions = [];
 
-    Branch.index({by_repository_id: repository_id}, function(branches){
-        console.log(branches);
+    Branch.index({by_repository_id: repository_id}, function (branches) {
         $scope.branches = branches;
     });
 
-    $scope.view = function(){
+    $scope.view = function () {
         Diff.new({old_gemfile_version_id: $scope.oldGemfileVersion,
-            new_gemfile_version_id: $scope.newGemfileVersion}, function(gemfile_versions){
-            console.log(gemfile_versions);
+            new_gemfile_version_id: $scope.newGemfileVersion}, function (diff) {
+            $scope.diff = diff;
         })
     }
 
     $scope.$watch("oldBranch",
-        function(newValue) {
+        function (newValue) {
             $scope.oldGemfileVersions = [];
             if (newValue)
-            GemfileVersion.index({by_branch_id: newValue}, function(gemfileVersions){
-                $scope.oldGemfileVersions = gemfileVersions;
+                GemfileVersion.index({by_branch_id: newValue}, function (gemfileVersions) {
+                    $scope.oldGemfileVersions = gemfileVersions;
+                });
         });
-     });
 
     $scope.$watch("newBranch",
-        function(newValue) {
+        function (newValue) {
             $scope.newGemfileVersions = [];
             if (newValue)
                 GemfileVersion.index({by_branch_id: newValue}, function (gemfileVersions) {

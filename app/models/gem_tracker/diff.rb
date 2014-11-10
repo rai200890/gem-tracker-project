@@ -12,4 +12,9 @@ class GemTracker::Diff
     self.updated = new.gem_versions - included - unchanged
   end
 
+  private
+  def to_hash
+
+  end
+
 end
