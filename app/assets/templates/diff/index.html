@@ -7,11 +7,13 @@
                 <div class="form-group" >
                     <select class="form-control" ng-model="oldBranch"
                             ng-options="branch.id as branch.name for branch in branches">
+                        <option value="" disabled selected>Select the branch</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <select ng-show="oldBranch" class="form-control" ng-model="oldGemfileVersion"
                             ng-options="gemfileVersion.id as (gemfileVersion.date | date: 'medium') for gemfileVersion in oldGemfileVersions">
+                        <option value="" disabled selected>Select desired version from this branch</option>
                     </select>
                 </div>
             </div>
@@ -20,18 +22,15 @@
                 <div class="form-group" >
                     <select class="form-control" ng-model="newBranch"
                             ng-options="branch.id as branch.name for branch in branches">
+                        <option value="" disabled selected>Select the branch</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <select ng-show="newBranch" class="form-control" ng-model="newGemfileVersion"
                             ng-options="gemfileVersion.id as (gemfileVersion.date | date: 'medium') for gemfileVersion in newGemfileVersions">
+                        <option value="" disabled selected>Select desired version from this branch</option>
                     </select>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group">
-                <button class="btn btn-primary"ng-click="view()">Diff</button>
             </div>
         </div>
     </div>

@@ -2,9 +2,9 @@
     <div class="panel panel-info">
         <div class="panel-heading">Branches</div>
         <div class="panel-body">
-            <div class="form-inline">
-                <label>Choose branch</label>
-                <select class="form-control" ng-model="selectedBranch" ng-options="branch.id as branch.name for branch in branches">
+            <div class="form-inline text-center">
+                <label>Current Branch</label>
+                <select class="form-control" ng-model="selectedBranch" ng-options="branch as branch.name for branch in branches">
                 </select>
             </div>
         </div>
@@ -13,11 +13,16 @@
         <div class="panel-heading">Gemfile Versions</div>
         <div class="panel-body">
             <h4 ng-hide="selectedBranch && gemfileVersions" class="text-center">Choose a branch for visualization</h4>
-            <table ng-show='selectedBranch' class="table table-striped table-responsive">
+            <table st-table="gemfileVersions"  st-safe-src="gemfile_versions" ng-show='selectedBranch' class="table table-striped table-responsive">
                 <thead>
-                <th>Commit Id</th>
-                <th>Date</th>
-                <th>Commit Message</th>
+                <tr>
+                    <th colspan="3"><input st-search="" class="form-control" placeholder="Filter By Commit Id or Commit Message" type="text"/></th>
+                </tr>
+                <tr>
+                    <th>Commit Id</th>
+                    <th st-sort="date">Date</th>
+                    <th>Commit Message</th>
+                </tr>
                 </thead>
                 <tbody ng-repeat="gemfileVersion in gemfileVersions">
                 <tr>

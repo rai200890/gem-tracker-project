@@ -17,10 +17,12 @@ function DiffController($scope, $stateParams, Branch, GemfileVersion, Diff) {
     });
 
     $scope.view = function () {
-        Diff.new({old_gemfile_version_id: $scope.oldGemfileVersion,
-            new_gemfile_version_id: $scope.newGemfileVersion}, function (diff) {
-            $scope.diff = diff;
-        })
+        $scope.diff = null;
+        if($scope.oldGemfileVersion && $scope.newGemfileVersion)
+            Diff.new({old_gemfile_version_id: $scope.oldGemfileVersion,
+                new_gemfile_version_id: $scope.newGemfileVersion}, function (diff) {
+                $scope.diff = diff;
+            })
     }
 
     $scope.$watch("oldBranch",
@@ -41,4 +43,13 @@ function DiffController($scope, $stateParams, Branch, GemfileVersion, Diff) {
                 });
         });
 
+    $scope.$watch("newGemfileVersion",
+        function () {
+            $scope.view();
+        });
+
+    $scope.$watch("oldGemfileVersion",
+        function () {
+            $scope.view();
+        });
 }
