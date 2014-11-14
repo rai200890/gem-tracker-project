@@ -19,8 +19,11 @@ gemTrackerApp.config(function($stateProvider, $urlRouterProvider, $locationProvi
 
     $stateProvider.state("projects", {
         url: "/projects",
-        templateUrl: "projects/index.html",
-        controller: ProjectsController
+        views: {
+            '': { templateUrl: 'projects/index.html', controller: ProjectsController },
+            "new@projects" : {templateUrl: "projects/new.html"},
+            "list@projects" :{templateUrl: "projects/list.html"}
+        }
     }).state("projects_details", {
         url: "/projects/:id",
         templateUrl: "projects/show.html",

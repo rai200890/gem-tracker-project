@@ -15,7 +15,7 @@
                             ng-options="gemfileVersion as (gemfileVersion.date | date: 'medium') for gemfileVersion in oldGemfileVersions">
                         <option value="" disabled selected>Select desired version from this branch</option>
                     </select>
-                    <button class="btn btn-sm btn-info"><span class="fa fa-info-circle"></span></button>
+                    <button ng-show="oldGemfileVersion" popover-title="Commit Message" popover="{{oldGemfileVersion.commit_message}}" class="btn btn-sm btn-info"><span class="fa fa-info-circle"></span></button>
                 </div>
             </div>
             <div class="col-md-5 pull-right">
@@ -31,7 +31,7 @@
                              ng-options="gemfileVersion as (gemfileVersion.date | date: 'medium') for gemfileVersion in newGemfileVersions">
                         <option value="" disabled selected>Select desired version from this branch</option>
                     </select>
-                    <button class="btn btn-sm btn-info"><span class="fa fa-info-circle"></span></button>
+                    <button ng-show="newGemfileVersion" popover-title="Commit Message" popover="{{newGemfileVersion.commit_message}}" class="btn btn-sm btn-info"><span class="fa fa-info-circle"></span></button>
                 </div>
             </div>
         </div>

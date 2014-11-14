@@ -25,8 +25,11 @@ function DiffController($scope, $stateParams, Branch, GemfileVersion, Diff) {
             })
     }
 
-    $scope.$watch("oldBranch",
+    $scope.$watch(function(scope){
+        return scope.oldBranch;
+        },
         function (newValue) {
+            console.log(newValue);
             $scope.oldGemfileVersions = [];
             if (newValue)
                 GemfileVersion.index({by_branch_id: newValue}, function (gemfileVersions) {
