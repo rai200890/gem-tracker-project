@@ -10,11 +10,12 @@
                         <option value="" disabled selected>Select the branch</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <select ng-show="oldBranch" class="form-control" ng-model="oldGemfileVersion"
-                            ng-options="gemfileVersion.id as (gemfileVersion.date | date: 'medium') for gemfileVersion in oldGemfileVersions">
+                <div ng-show="oldBranch" class="form-group form-inline">
+                    <select class="form-control" ng-model="oldGemfileVersion"
+                            ng-options="gemfileVersion as (gemfileVersion.date | date: 'medium') for gemfileVersion in oldGemfileVersions">
                         <option value="" disabled selected>Select desired version from this branch</option>
                     </select>
+                    <button class="btn btn-sm btn-info"><span class="fa fa-info-circle"></span></button>
                 </div>
             </div>
             <div class="col-md-5 pull-right">
@@ -25,11 +26,12 @@
                         <option value="" disabled selected>Select the branch</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <select ng-show="newBranch" class="form-control" ng-model="newGemfileVersion"
-                            ng-options="gemfileVersion.id as (gemfileVersion.date | date: 'medium') for gemfileVersion in newGemfileVersions">
+                <div ng-show="newBranch" class="form-group form-inline">
+                    <select  class="form-control" ng-model="newGemfileVersion"
+                             ng-options="gemfileVersion as (gemfileVersion.date | date: 'medium') for gemfileVersion in newGemfileVersions">
                         <option value="" disabled selected>Select desired version from this branch</option>
                     </select>
+                    <button class="btn btn-sm btn-info"><span class="fa fa-info-circle"></span></button>
                 </div>
             </div>
         </div>
