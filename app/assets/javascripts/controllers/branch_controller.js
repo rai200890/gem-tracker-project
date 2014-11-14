@@ -8,11 +8,13 @@ function BranchController($scope, Branch, GemfileVersion, $stateParams){
         $scope.branches = response;
     });
 
-    $scope.view = function(){
-        $scope.branch = $scope.branches.indexOf($scope.selectedBranch);
-        GemfileVersion.index({by_branch_id: $scope.selectedBranch},function(response){
-            $scope.gemfileVersions =  response;
+    $scope.$watch("selectedBranch",
+        function (newValue) {
+            $scope.gemfileVersions = [];
+            if (newValue)
+                GemfileVersion.index({by_branch_id: $scope.selectedBranch},function(response){
+                    $scope.gemfileVersions = response;
+                });
         });
-    }
 
 }

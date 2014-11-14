@@ -6,7 +6,6 @@
                 <label>Choose branch</label>
                 <select class="form-control" ng-model="selectedBranch" ng-options="branch.id as branch.name for branch in branches">
                 </select>
-                <button ng-click="view()" ng-disabled="!selectedBranch" class="btn btn-primary"><i class="fa fa-search-plus"></i><span>View</span></button>
             </div>
         </div>
     </div>
@@ -18,11 +17,13 @@
                 <thead>
                 <th>Commit Id</th>
                 <th>Date</th>
+                <th>Commit Message</th>
                 </thead>
                 <tbody ng-repeat="gemfileVersion in gemfileVersions">
                 <tr>
                     <td>{{gemfileVersion.commit_id}}</td>
                     <td>{{gemfileVersion.date | date:'medium' }}</td>
+                    <td>{{gemfileVersion.commit_message }}</td>
                 </tr>
                 </tbody>
             </table>

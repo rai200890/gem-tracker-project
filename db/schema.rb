@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007220645) do
+ActiveRecord::Schema.define(version: 20141112184143) do
 
   create_table "branches", force: true do |t|
     t.integer "repository_id"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20141007220645) do
     t.integer  "branch_id"
     t.string   "commit_id"
     t.datetime "date"
+    t.string   "commit_message"
   end
 
   add_index "gemfile_versions", ["branch_id"], name: "index_gemfile_versions_on_branch_id", using: :btree

@@ -31,7 +31,8 @@ class GemTracker::Project
         branch.save
         errors.add(:base, branch.errors.full_messages) unless branch.valid?
         @git_repository.commits.each do |commit|
-          GemTracker::Gemfile.create(commit_id: commit.objectish, branch_id: branch.id, date: commit.date, gems: @git_repository.gems(branch.name, commit.objectish))
+          GemTracker::Gemfile.create(commit_id: commit.objectish, branch_id: branch.id, date: commit.date,
+                                     gems: @git_repository.gems(branch.name, commit.objectish), commit_message: commit.message)
         end
       end
       errors.add(:base, @git_repository.errors.full_messages) if @git_repository.errors.any?

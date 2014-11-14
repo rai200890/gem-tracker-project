@@ -1,10 +1,10 @@
 <alert ng-if="message.error" type="danger" close="closeErrorMessages()">
     <div ng-if="message.error">
-        <strong>Erro!</strong> {{message.error}}
+        <strong>Error!</strong> {{message.error}}
     </div>
 </alert>
 <alert ng-if="message.errors" type="danger" close="closeErrorMessages()">
-    <strong>Erro!</strong>
+    <strong>Errors!</strong>
     <div ng-repeat="(field, errors) in message.errors">
         <strong>{{field}}</strong> {{errors}}
     </div>
