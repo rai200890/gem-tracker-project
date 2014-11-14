@@ -1,5 +1,5 @@
 <ul class="nav nav-pills">
-    <li ng-repeat="state in states"><a ui-sref="{{state.name}}">{{state.description}}</a></li>
+    <li class="{{(selectedState == state) ? 'active' : ''}}" ng-repeat="state in states"><a ui-sref="{{state.name}}">{{state.description}}</a></li>
 </ul>
 <div>
     <ui-view>
