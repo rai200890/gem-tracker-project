@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :projects, only: [:create, :show]
     resource :diff, only: [:new]
     resources :repositories, only: [:index, :show]
-    resources :branches, only: [:index]
+    resources :branches, only: [:index, :show]
     resources :gemfile_versions, only:[:index, :show]
     resources :gem_versions, only: [:index]
   end

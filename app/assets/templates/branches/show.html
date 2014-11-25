@@ -21,15 +21,16 @@
                     </tr>
                     <tr>
                         <th>Commit Id</th>
-                        <th st-sort="date">Date</th>
+                        <th st-sort="dtate">Date</th>
                         <th>Commit Message</th>
+                        <th st-sort="commit_author">Author</th>
                     </tr>
-                    </thead>
                     <tbody ng-repeat="gemfileVersion in gemfileVersions">
                     <tr>
                         <td>{{gemfileVersion.commit_id}}</td>
                         <td>{{gemfileVersion.date | date:'medium' }}</td>
                         <td>{{gemfileVersion.commit_message }}</td>
+                        <td>{{gemfileVersion.commit_author }}</td>
                         <td><a ui-sref="projects_details.branches.gemfile_version({id: repository_id, branch_id: selectedBranch.id, gemfile_version_id: gemfileVersion.id})"><i class="fa fa-search-plus"></i></a></td>
                     </tr>
                     </tbody>

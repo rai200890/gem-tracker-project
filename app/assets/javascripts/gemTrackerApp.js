@@ -32,7 +32,7 @@ gemTrackerApp.config(function($stateProvider, $urlRouterProvider, $locationProvi
         templateUrl: "projects/show.html",
         controller: ProjectController
     }).state("projects_details.info", {
-        url: "",
+        url: "/info",
         templateUrl: "projects/info.html",
         controller: ProjectInfoController
     }).state("projects_details.branches", {
@@ -47,7 +47,7 @@ gemTrackerApp.config(function($stateProvider, $urlRouterProvider, $locationProvi
         url: "/gemfile_version/:gemfile_version_id",
         templateUrl: "gemfile_versions/show.html",
         controller: GemfileVersionController
-    });;
+    });
 
     $urlRouterProvider.otherwise("/");
 });

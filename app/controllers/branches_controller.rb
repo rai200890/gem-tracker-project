@@ -8,4 +8,8 @@ class BranchesController < ApplicationController
     respond_with(apply_scopes(GemTracker::Branch).all)
   end
 
+  def show
+    respond_with(GemTracker::Branch.find params[:id])
+  end
+
 end
