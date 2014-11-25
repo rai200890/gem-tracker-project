@@ -5,7 +5,7 @@ class GemTracker::GemfileVersion < ActiveRecord::Base
 
   validate :commit_id, uniqueness: true, presence: true, scope: :branch_id
   validate :branch_id, presence: true
-
+  delegate :name, to: :branch, prefix: true
   scope :by_branch_id, ->(branch_id){where(branch_id: branch_id)}
 
 end

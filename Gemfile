@@ -17,3 +17,4 @@ gem 'coffee-rails'
 gem 'has_scope'
 gem 'angular_rails_csrf'
 gem 'rspec-rails', group: [:development, :test]
+gem 'railroady'

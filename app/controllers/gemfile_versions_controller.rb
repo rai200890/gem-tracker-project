@@ -8,4 +8,8 @@ class GemfileVersionsController < ApplicationController
     respond_with(apply_scopes(GemTracker::GemfileVersion).all)
   end
 
+  def show
+    respond_with(GemTracker::GemfileVersion.find(params[:id]), methods: [:branch_name])
+  end
+
 end

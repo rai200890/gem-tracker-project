@@ -1,12 +1,17 @@
 function BranchController($scope, Branch, GemfileVersion, $stateParams){
 
-    $scope.selectedBranch = null;
+    $scope.selectedBranch = $stateParams.branch_id;
+    $scope.repository_id = $stateParams.id;
 
-    var repository_id = $stateParams.id;
-
-    Branch.index({by_repository_id: repository_id},function(response){
+    Branch.index({by_repository_id: $stateParams.branch_id},function(response){
         $scope.branches = response;
     });
+
+
+    Branch.show({id: $scope.branch_id},function(response){
+        $scope.selectedBranch = response;
+    });
+
 
     $scope.$watch("selectedBranch",
         function (newValue) {
@@ -17,5 +22,4 @@ function BranchController($scope, Branch, GemfileVersion, $stateParams){
                     $scope.gemfileVersions = $scope.gemfile_versions.concat([]);
                 });
         });
-
 }

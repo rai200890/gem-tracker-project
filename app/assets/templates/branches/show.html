@@ -9,29 +9,32 @@
             </div>
         </div>
     </div>
-    <div class="panel panel-info">
-        <div class="panel-heading">Gemfile Versions</div>
-        <div class="panel-body">
-            <h4 ng-hide="selectedBranch && gemfileVersions" class="text-center">Choose a branch for visualization</h4>
-            <table st-table="gemfileVersions"  st-safe-src="gemfile_versions" ng-show='selectedBranch' class="table table-striped table-responsive">
-                <thead>
-                <tr>
-                    <th colspan="3"><input st-search="" class="form-control" placeholder="Filter By Commit Id or Commit Message" type="text"/></th>
-                </tr>
-                <tr>
-                    <th>Commit Id</th>
-                    <th st-sort="date">Date</th>
-                    <th>Commit Message</th>
-                </tr>
-                </thead>
-                <tbody ng-repeat="gemfileVersion in gemfileVersions">
-                <tr>
-                    <td>{{gemfileVersion.commit_id}}</td>
-                    <td>{{gemfileVersion.date | date:'medium' }}</td>
-                    <td>{{gemfileVersion.commit_message }}</td>
-                </tr>
-                </tbody>
-            </table>
+    <ui-view>
+        <div class="panel panel-info">
+            <div class="panel-heading">Gemfile Versions</div>
+            <div class="panel-body">
+                <h4 ng-hide="selectedBranch && gemfileVersions" class="text-center">Choose a branch for visualization</h4>
+                <table st-table="gemfileVersions"  st-safe-src="gemfile_versions" ng-show='selectedBranch' class="table table-striped table-responsive">
+                    <thead>
+                    <tr>
+                        <th colspan="3"><input st-search="" class="form-control" placeholder="Filter By Commit Id or Commit Message" type="text"/></th>
+                    </tr>
+                    <tr>
+                        <th>Commit Id</th>
+                        <th st-sort="date">Date</th>
+                        <th>Commit Message</th>
+                    </tr>
+                    </thead>
+                    <tbody ng-repeat="gemfileVersion in gemfileVersions">
+                    <tr>
+                        <td>{{gemfileVersion.commit_id}}</td>
+                        <td>{{gemfileVersion.date | date:'medium' }}</td>
+                        <td>{{gemfileVersion.commit_message }}</td>
+                        <td><a ui-sref="projects_details.branches.gemfile_version({id: repository_id, branch_id: selectedBranch.id, gemfile_version_id: gemfileVersion.id})"><i class="fa fa-search-plus"></i></a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
+    </ui-view>
 </div>
