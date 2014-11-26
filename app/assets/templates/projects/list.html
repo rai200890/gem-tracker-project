@@ -4,11 +4,12 @@
         <table ng-show="repositories.length > 0" st-table="repositories"  st-safe-src="repos" class="table table-striped">
             <thead>
             <tr>
-                <th st-sort="name">Name</th>
-                <th st-sort="url">URL</th>
+                <th colspan="4"><input st-search="" class="form-control" placeholder="filter project by name or url" type="text"/></th>
             </tr>
             <tr>
-                <th colspan="4"><input st-search="" class="form-control" placeholder="filter project by name or url" type="text"/></th>
+                <th st-sort="name">Name</th>
+                <th st-sort="url">URL</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -16,6 +17,7 @@
                 <td>{{repository.name}}</td>
                 <td><a ng-href="{{repository.url}}" target="_blank">{{repository.url}}</a></td>
                 <td><a ui-sref="projects_details.info({id: repository.id})"><i class="fa fa-search-plus"></i></a></td>
+                <td><a href ng-click="update(repository)"><i class="fa fa-refresh {{ (repository.loading)? 'fa-circle-o-notch fa-spin' : ''}}"></i></a></td>
             </tr>
             </tbody>
             <tfoot>

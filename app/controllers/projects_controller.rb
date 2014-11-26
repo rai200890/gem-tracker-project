@@ -12,6 +12,12 @@ class ProjectsController < ApplicationController
     respond_with @project, represent_with: ProjectRepresenter
   end
 
+  def update
+    @project = GemTracker::Project.find params[:id]
+    @project.save
+    respond_with @project
+  end
+
 
   private
 
