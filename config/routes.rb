@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get '/projects', controller: :application, action: :index
   get '/projects/:id', controller: :application, action: :index
+  get '/projects/:id/info', controller: :application, action: :index
   get '/projects/:id/branches', controller: :application, action: :index
   get '/projects/:id/branches/:branch_id', controller: :application, action: :index
   get '/projects/:id/branches/:branch_id/gemfile_version/:gemfile_version_id', controller: :application, action: :index
