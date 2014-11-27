@@ -20,11 +20,10 @@ class GemTracker::Gemfile
 
   def save
     ActiveRecord::Base.transaction do
-      query = GemTracker::GemfileVersion.where(commit_id: commit_id, branch_id: branch_id,
-                                               date: date, commit_message: commit_message,
-                                               commit_author: commit_author)
-      unless query.exists?
-        gemfile_version = query.first_or_create
+      unless GemTracker::GemfileVersion.where(commit_id: commit_id).exists?
+        gemfile_version = GemTracker::GemfileVersion.create(commit_id: commit_id, branch_id: branch_id,
+                                                           date: date, commit_message: commit_message,
+                                                           commit_author: commit_author)
         errors.add(:base, gemfile_version.errors.full_messages) unless gemfile_version.valid?
         gems.each do |g|
           gem = GemTracker::Gem.where(name: g.name.to_s).first_or_create
