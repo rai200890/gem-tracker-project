@@ -1,5 +1,5 @@
 var gemTrackerApp = angular.module('gemTrackerApp',
-    ['ngResource','ngRoute','templates','ui.bootstrap','ui.router','smart-table']);
+    ['ngResource','ngRoute','templates','ui.bootstrap','ui.router','smart-table', 'angular-loading-bar']);
 
 gemTrackerApp.controller('BranchController',BranchController);
 gemTrackerApp.controller('ProjectController',ProjectController);
@@ -17,7 +17,9 @@ gemTrackerApp.factory('Diff', Diff);
 
 gemTrackerApp.service('$confirmationModal', ConfirmationModal);
 
-gemTrackerApp.config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
+gemTrackerApp.config(function($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider, cfpLoadingBarProvider) {
+    cfpLoadingBarProvider.includeSpinner = false;
+
     $locationProvider.html5Mode(true);
 
     $stateProvider.state("projects", {
