@@ -10,7 +10,8 @@ class  GemTracker::GitRepository
     begin
       @path = "#{TMP_PATH}/#{params[:name]}"
       self.url = params[:url]
-      @git = Dir.exists?(@path) ? Git.open(@path) : Git.clone(self.url, @path)
+      FileUtils.remove_dir(@path, true)
+      @git = Git.clone(self.url, @path)
       @git.reset_hard
       @git.pull
     rescue Exception => e
@@ -18,26 +19,19 @@ class  GemTracker::GitRepository
     end
   end
 
-  def current_branch
-    @git.current_branch
-  end
-
   def commits
     @git.log(LOG_LIMIT).object("Gemfile.lock").map{|c| c}.reverse
   end
 
   def branches
-    @git.branches.local.to_a.map{|b| b.try :name}
-  end
-
-  def checkout branch
-    @git.reset_hard
-    @git.pull
-    @git.checkout branch
+    @git.branches.remote.select do |b|
+      !b.name.match(/\A.*-> (.+)/).try :captures
+    end.map(&:name)
   end
 
   def gems branch = 'master', commit_id
-    checkout branch
+    @git.reset_hard
+    @git.checkout branch
     @git.checkout_file(commit_id, "Gemfile.lock")
     file = File.new "#{@path}/Gemfile.lock"
     gemfile = Bundler::LockfileParser.new file.read

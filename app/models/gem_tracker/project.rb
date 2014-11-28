@@ -8,7 +8,7 @@ class GemTracker::Project
     @name = params[:name]
     @git_repository = GemTracker::GitRepository.new(url: @url, name: @name)
     self.repository = GemTracker::Repository.where(url: @url, name: @name).first_or_initialize
-    self.branches = @git_repository.branches.map{|branch| GemTracker::Branch.where(name: branch).first_or_initialize}
+    self.branches = @git_repository.branches.map{|branch| GemTracker::Branch.where(name: branch, repository_id: repository.id).first_or_initialize}
   end
 
   def self.find id
