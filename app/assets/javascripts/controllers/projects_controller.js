@@ -14,6 +14,7 @@ function ProjectsController($scope, $stateParams, Project, Repository) {
         Project.create({project: $scope.project},
             function (response) {
                 $scope.$broadcast('success', 'Project created.');
+                $scope.project = new Project({});
                 $scope.repos.push(response.repository);
                 $scope.loading = false;
             },
