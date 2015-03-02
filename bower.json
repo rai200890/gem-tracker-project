@@ -14,16 +14,15 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "~2.1.1",
-    "bootstrap": "~3.2.0",
+    "jquery": "latest",
+    "bootstrap": "latest",
     "angular": "latest",
     "angular-mocks": "latest",
     "angular-resource": "latest",
-    "angular-named-routes": "latest",
     "angular-bootstrap": "latest",
-    "smart-table": "latest",
     "angular-loading-bar": "latest",
     "angular-ui-router": "latest",
-      "angular-route": "latest"
+    "angular-route": "latest",
+    "angular-smart-table": "latest"
   }
 }
