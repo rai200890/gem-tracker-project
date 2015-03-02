@@ -1,4 +1,4 @@
-function ProjectsController($scope, $stateParams, Project, Repository) {
+function ProjectsController($scope, Project, Repository) {
     $scope.loading = false;
     $scope.project = new Project({});
     $scope.repositories = [];

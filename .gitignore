@@ -33,7 +33,7 @@ build/
 /.bundle/
 /lib/bundler/man/
 /.idea/
-.idea/
+/.idea/*
 .idea/*
 node_modules/*
 bower_components/*

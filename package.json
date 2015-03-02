@@ -12,6 +12,8 @@
   },
   "homepage": "https://github.com/rai200890/gem-tracker-project",
   "devDependencies": {
+    "grunt": "latest",
+    "grunt-angular-templates": "latest",
     "gulp": "^3.8.11",
     "gulp-ng-templates": "0.0.5",
     "jasmine-core": "^2.2.0",
