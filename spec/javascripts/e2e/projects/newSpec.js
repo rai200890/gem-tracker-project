@@ -7,6 +7,7 @@ describe('Project creation', function() {
         });
         it('A project should be successfully created', function() {
             browser.get("/projects");
+            browser.pause();
             element(by.model('newTipoDiplomaLegal.descricao')).sendKeys('Decreto');
             element(by.model('newTipoDiplomaLegal.sigla')).sendKeys('DRC');
             element(by.id('new')).click();

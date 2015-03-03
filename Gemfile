@@ -7,6 +7,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'therubyracer',  platforms: :ruby
 gem 'spring',        group: :development
 gem 'git'
+gem 'less-rails'
 gem 'byebug', group: [:development, :test]
 gem 'roar-rails'
 gem 'has_scope'

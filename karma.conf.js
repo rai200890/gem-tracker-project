@@ -16,7 +16,6 @@ module.exports = function(config) {
             'app/assets/javascripts/services/*.js',
             'app/assets/javascripts/resources/*.js',
             'app/assets/javascripts/gemTrackerApp.js',
-            'app/assets/javascripts/templates.js',
             'spec/javascripts/unit/**/*.js'
         ],
 
@@ -27,7 +26,9 @@ module.exports = function(config) {
         reporters: ['mocha','coverage'],
 
         preprocessors: {
-            'app/assets/javascripts/**/*.js': 'coverage'
+            'app/assets/javascripts/controllers/*.js': 'coverage',
+            'app/assets/javascripts/services/*.js': 'coverage',
+            'app/assets/javascripts/resources/*.js': 'coverage'
         },
 
         coverageReporter: {
