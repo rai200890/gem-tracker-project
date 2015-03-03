@@ -14,6 +14,7 @@
     "tests"
   ],
   "dependencies": {
+    "font-awesome": "latest",
     "jquery": "latest",
     "bootstrap": "latest",
     "angular": "latest",

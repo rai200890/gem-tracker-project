@@ -11,16 +11,16 @@
 // about supported directives.
 //
 
-//= require jquery
-//= require bootstrap
-//= require angular
-//= require angular-route
-//= require angular-resource
+//= require jquery/dist/jquery.min
+//= require bootstrap/dist/js/bootstrap.min
+//= require angular/angular.min
+//= require angular-route/angular-route.min
+//= require angular-resource/angular-resource.min
 //= require angular-bootstrap/ui-bootstrap.min
 //= require angular-bootstrap/ui-bootstrap-tpls.min
-//= require angular-smart-table
-//= require angular-ui-router
-//= require angular-loading-bar
+//= require angular-smart-table/dist/smart-table.min
+//= require angular-ui-router/release/angular-ui-router.min
+//= require angular-loading-bar/build/loading-bar.min
 //= require_tree ./controllers/
 //= require_tree ./resources/
 //= require_tree ./services/
